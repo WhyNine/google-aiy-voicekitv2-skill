@@ -21,12 +21,12 @@ from mycroft.messagebus.message import Message
 
 import time
 import RPi.GPIO as GPIO
+from aiy.leds import Leds, Color
 
 # GPIO pins
 BUTTON = 23
-LED = 25
 
-class PicroftGoogleAiyVoicekit(MycroftSkill):
+class PicroftGoogleAiyVoicekitv2(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
 
@@ -34,15 +34,16 @@ class PicroftGoogleAiyVoicekit(MycroftSkill):
         try:
             GPIO.setmode(GPIO.BCM)
             GPIO.setwarnings(False)
-            GPIO.setup(LED, GPIO.OUT)
             GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)
             GPIO.add_event_detect(BUTTON, GPIO.FALLING, bouncetime = 500)
+            with Leds() as leds:
+                leds.update(Leds.rgb_on(Color.GREEN))
         except GPIO.error:
             self.log.warning("Can't initialize GPIO - skill will not load")
             self.speak_dialog("error.initialise")
         finally:
             self.schedule_repeating_event(self.handle_button,
-                                          None, 0.1, 'GoogleAIY')
+                                          None, 0.1, 'GoogleAIYv2')
             self.add_event('recognizer_loop:record_begin',
                            self.handle_listener_started)
             self.add_event('recognizer_loop:record_end',
@@ -63,11 +64,13 @@ class PicroftGoogleAiyVoicekit(MycroftSkill):
 
     def handle_listener_started(self, message):
         # code to excecute when active listening begins...
-        GPIO.output(LED, GPIO.HIGH)
+        with Leds() as leds:
+            leds.update(Leds.rgb_on(Color.WHITE))
 
     def handle_listener_ended(self, message):
-        GPIO.output(LED, GPIO.LOW)
+        with Leds() as leds:
+            leds.update(Leds.rgb_on(Color.GREEN))
 
 
 def create_skill():
-    return PicroftGoogleAiyVoicekit()
+    return PicroftGoogleAiyVoicekitv2()
