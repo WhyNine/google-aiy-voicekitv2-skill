@@ -1,5 +1,5 @@
 """
-skill picroft-google-aiy-voicekit
+skill picroft-google-aiy-voicekitv2
 Copyright (C) 2018  Andreas Lorensen
 
 This program is free software: you can redistribute it and/or modify
