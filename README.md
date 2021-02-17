@@ -9,6 +9,11 @@ The button led turns on when Mycroft is listening. If button is pressed he begin
 ## Important
 This skill is made for Picroft Lightning which is Picroft on Rasbian Stretch and should install and initialize "out of the box", assuming that the Voice Bonnet is already working for voice input and speaker output.
 
+The following commands may need to be run to ensure that the aiy modules can be found:
+* git clone https://github.com/google/aiyprojects-raspbian.git AIY-projects-python
+* sudo pip3 install -e AIY-projects-python/src
+* echo "/home/pi/AIY-projects-python/src" > ~/mycroft-core/.venv/lib/python3.7/site-packages/aiy.pth
+
 ## Category
 **IoT**
 
