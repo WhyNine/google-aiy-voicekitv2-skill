@@ -29,11 +29,11 @@ colours = (Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.PURPLE, Color
 
 class PicroftGoogleAiyVoicekitv2(MycroftSkill):
 
-    def led_idle:
+    def led_idle(self):
         self.log.info("Change LED to IDLE colour")
         self.leds.update(Leds.rgb_on(colours(self.ledidlecolour)))
 
-    def led_listen:
+    def led_listen(self):
         self.log.info("Change LED to LISTEN colour")
         self.leds.update(Leds.rgb_on(colours(self.ledlistencolour)))
 
