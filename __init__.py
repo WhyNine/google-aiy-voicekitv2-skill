@@ -27,7 +27,7 @@ from aiy.leds import Leds, Color
 BUTTON = 23
 
 class PicroftGoogleAiyVoicekitv2(MycroftSkill):
-    leds = Led()
+    leds = Leds()
 
     def __init__(self):
         MycroftSkill.__init__(self)
