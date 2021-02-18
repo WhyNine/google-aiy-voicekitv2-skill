@@ -42,7 +42,7 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
 
     def initialize(self):
         self.settings_change_callback = self.on_settings_changed
-        get_settings()
+        self.get_settings()
         try:
             self.leds = Leds()
             self.led_idle()
@@ -59,14 +59,11 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
             self.log.warning("Can't initialize GPIO - skill will not load")
             self.speak_dialog("error.initialise")
         finally:
-            self.schedule_repeating_event(self.handle_button,
-                                          None, 0.1, 'GoogleAIYv2')
-            self.add_event('recognizer_loop:record_begin',
-                           self.handle_listener_started)
-            self.add_event('recognizer_loop:record_end',
-                           self.handle_listener_ended)
+            self.schedule_repeating_event(self.button_press, None, 0.1, 'GoogleAIYv2')
+            self.add_event('recognizer_loop:record_begin', self.on_listener_started)
+            self.add_event('recognizer_loop:record_end', self.on_listener_ended)
 
-    def handle_button(self, message):
+    def button_press(self, message):
         longpress_threshold = 2
         if GPIO.event_detected(BUTTON):
             self.log.info("GPIO.event_detected")
@@ -79,20 +76,20 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
             else:
                 self.bus.emit(Message("mycroft.stop"))
 
-    def handle_listener_started(self, message):
-        # code to excecute when active listening begins...
+    def on_listener_started(self, message):
         self.led_listen()
 
-    def handle_listener_ended(self, message):
+    def on_listener_ended(self, message):
         self.led_idle()
 
     def on_settings_changed(self):
         self.get_settings()
+        self.led_idle()
         
     def get_settings(self):
         self.ledidlecolour = self.settings.get('ledidlecolour', "")
         self.ledlistencolour = self.settings.get('ledlistencolour', "")
-        LOGGER.info('Settings: {} {}'.format(self.ledidlecolour, self.ledlistencolour))
+        self.log.warning('Settings: {} {}'.format(self.ledidlecolour, self.ledlistencolour))
 
 
 def create_skill():
