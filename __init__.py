@@ -87,8 +87,8 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
         self.led_idle()
         
     def get_settings(self):
-        self.ledidlecolour = self.settings.get('ledidlecolour', "")
-        self.ledlistencolour = self.settings.get('ledlistencolour', "")
+        self.ledidlecolour = self.settings.get('ledidlecolour', 1)
+        self.ledlistencolour = self.settings.get('ledlistencolour', 2)
         self.log.warning('Settings: {} {}'.format(self.ledidlecolour, self.ledlistencolour))
 
 
