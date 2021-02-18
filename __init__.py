@@ -27,9 +27,9 @@ from aiy.leds import Leds, Color
 BUTTON = 23
 
 class PicroftGoogleAiyVoicekitv2(MycroftSkill):
-    leds = Leds()
 
     def __init__(self):
+        self.leds = Leds()
         MycroftSkill.__init__(self)
 
     def initialize(self):
@@ -38,7 +38,7 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
             GPIO.setwarnings(False)
             GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)
             GPIO.add_event_detect(BUTTON, GPIO.FALLING, bouncetime = 500)
-            leds.update(Leds.rgb_on(Color.GREEN))
+            self.leds.update(Leds.rgb_on(Color.GREEN))
         except GPIO.error:
             self.log.warning("Can't initialize GPIO - skill will not load")
             self.speak_dialog("error.initialise")
@@ -66,10 +66,10 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
     def handle_listener_started(self, message):
         # code to excecute when active listening begins...
         self.log.info("Turn LED white")
-        leds.update(Leds.rgb_on(Color.WHITE))
+        self.leds.update(Leds.rgb_on(Color.WHITE))
 
     def handle_listener_ended(self, message):
-        leds.update(Leds.rgb_on(Color.GREEN))
+        self.leds.update(Leds.rgb_on(Color.GREEN))
 
 
 def create_skill():
