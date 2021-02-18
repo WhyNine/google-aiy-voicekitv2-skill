@@ -89,12 +89,12 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
     def get_settings(self):
         self.ledidlecolour = int(self.settings.get('ledidlecolour', 1))
         self.ledidleintensity = self.settings.get('ledidleintensity', 100)
-        self.ledidleintensity = 0 if self.ledidleintensity < 0
-        self.ledidleintensity = 100 if self.ledidleintensity > 100
+        if self.ledidleintensity < 0: self.ledidleintensity = 0 
+        if self.ledidleintensity > 100: self.ledidleintensity = 100 
         self.ledlistencolour = int(self.settings.get('ledlistencolour', 2))
         self.ledlistenintensity = self.settings.get('ledlistenintensity', 100)
-        self.ledlistenintensity = 0 if self.ledlistenintensity < 0
-        self.ledlistenintensity = 100 if self.ledlistenintensity > 100
+        if self.ledlistenintensity < 0: self.ledlistenintensity = 0 
+        if self.ledlistenintensity > 100: self.ledlistenintensity = 100 
         self.log.warning('Settings: {} @ {}%, {} @ {}%'.format(self.ledidlecolour, self.ledidleintensity, self.ledlistencolour, self.ledlistenintensity))
 
 
