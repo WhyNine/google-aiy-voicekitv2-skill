@@ -29,18 +29,22 @@ BUTTON = 23
 class PicroftGoogleAiyVoicekitv2(MycroftSkill):
 
     def __init__(self):
-        self.leds = Leds()
         MycroftSkill.__init__(self)
 
     def initialize(self):
+        try:
+            self.leds = Leds()
+            self.leds.update(Leds.rgb_on(Color.GREEN))
+        except:
+            self.log.warning("Can't initialize LED - skill will not load")
+            self.speak_dialog("error.initialise")
         try:
             GPIO.setmode(GPIO.BCM)
             GPIO.setwarnings(False)
             GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)
             GPIO.remove_event_detect(BUTTON)
             GPIO.add_event_detect(BUTTON, GPIO.FALLING, bouncetime = 500)
-            self.leds.update(Leds.rgb_on(Color.GREEN))
-        except GPIO.error:
+        except:
             self.log.warning("Can't initialize GPIO - skill will not load")
             self.speak_dialog("error.initialise")
         finally:
