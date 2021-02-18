@@ -48,7 +48,7 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
             self.led_idle()
         except:
             self.log.warning("Can't initialize LED - skill will not load")
-            self.speak_dialog("error.initialise")
+            self.speak_dialog("error.initialize")
         try:
             GPIO.setmode(GPIO.BCM)
             GPIO.setwarnings(False)
@@ -57,7 +57,7 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
             GPIO.add_event_detect(BUTTON, GPIO.FALLING, bouncetime = 500)
         except:
             self.log.warning("Can't initialize GPIO - skill will not load")
-            self.speak_dialog("error.initialise")
+            self.speak_dialog("error.initialize")
         finally:
             self.schedule_repeating_event(self.button_press, None, 0.1, 'GoogleAIYv2')
             self.add_event('recognizer_loop:record_begin', self.on_listener_started)
