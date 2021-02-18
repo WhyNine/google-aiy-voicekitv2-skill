@@ -25,7 +25,7 @@ from aiy.leds import Leds, Color
 
 # GPIO pins
 BUTTON = 23
-colours = [Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.PURPLE, Color.CYAN, Color.WHITE, Color.Black]
+colours = [Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.PURPLE, Color.CYAN, Color.WHITE, Color.BLACK]
 
 class PicroftGoogleAiyVoicekitv2(MycroftSkill):
 
