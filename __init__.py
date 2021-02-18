@@ -37,6 +37,7 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
             GPIO.setmode(GPIO.BCM)
             GPIO.setwarnings(False)
             GPIO.setup(BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+            GPIO.remove_event_detect(BUTTON)
             GPIO.add_event_detect(BUTTON, GPIO.FALLING, bouncetime = 500)
             self.leds.update(Leds.rgb_on(Color.GREEN))
         except GPIO.error:
