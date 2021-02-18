@@ -31,11 +31,11 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
 
     def led_idle(self):
         self.log.info("Change LED to IDLE colour")
-        self.leds.update(Leds.rgb_on(colours[self.ledidlecolour]))
+        self.leds.update(Leds.rgb_on(Color.blend(colours[self.ledidlecolour], Color.BLACK, self.ledidleintensity/100)))
 
     def led_listen(self):
         self.log.info("Change LED to LISTEN colour")
-        self.leds.update(Leds.rgb_on(colours[self.ledlistencolour]))
+        self.leds.update(Leds.rgb_on(Color.blend(colours[self.ledlistencolour], Color.BLACK, self.ledlistenintensity/100)))
 
     def __init__(self):
         MycroftSkill.__init__(self)
