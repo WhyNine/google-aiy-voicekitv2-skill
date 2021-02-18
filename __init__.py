@@ -25,16 +25,27 @@ from aiy.leds import Leds, Color
 
 # GPIO pins
 BUTTON = 23
+colours = (Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE, Color.PURPLE, Color.CYAN, Color.WHITE, Color.Black)
 
 class PicroftGoogleAiyVoicekitv2(MycroftSkill):
+
+    def led_idle:
+        self.log.info("Change LED to IDLE colour")
+        self.leds.update(Leds.rgb_on(colours(self.ledidlecolour)))
+
+    def led_listen:
+        self.log.info("Change LED to LISTEN colour")
+        self.leds.update(Leds.rgb_on(colours(self.ledlistencolour)))
 
     def __init__(self):
         MycroftSkill.__init__(self)
 
     def initialize(self):
+        self.settings_change_callback = self.on_settings_changed
+        get_settings()
         try:
             self.leds = Leds()
-            self.leds.update(Leds.rgb_on(Color.GREEN))
+            self.led_idle()
         except:
             self.log.warning("Can't initialize LED - skill will not load")
             self.speak_dialog("error.initialise")
@@ -70,11 +81,18 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
 
     def handle_listener_started(self, message):
         # code to excecute when active listening begins...
-        self.log.info("Turn LED white")
-        self.leds.update(Leds.rgb_on(Color.WHITE))
+        self.led_listen()
 
     def handle_listener_ended(self, message):
-        self.leds.update(Leds.rgb_on(Color.GREEN))
+        self.led_idle()
+
+    def on_settings_changed(self):
+        self.get_settings()
+        
+    def get_settings(self):
+        self.ledidlecolour = self.settings.get('ledidlecolour', "")
+        self.ledlistencolour = self.settings.get('ledlistencolour', "")
+        LOGGER.info('Settings: {} {}'.format(self.ledidlecolour, self.ledlistencolour))
 
 
 def create_skill():
