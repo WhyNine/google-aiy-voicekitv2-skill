@@ -11,7 +11,7 @@ skillMetadata:
           type: select
           label: LED colour while idle
           options: RED|0;GREEN|1;YELLOW|2;BLUE|3;PURPLE|4;CYAN|5;WHITE|6;OFF|7
-          value: 0
+          value: 1
         - name: ledlistencolour
           type: text
           label: LED colour while listening for command
