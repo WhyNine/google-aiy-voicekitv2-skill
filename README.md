@@ -2,14 +2,14 @@
 Enables Google AIY voicekit v2 (with Voice Bonnet)
 
 ## About
-This enables the led and button on the Google AIY voicekit v2.
+This enables the led and button on the Google AIY voicekit v2 (with Voice Bonnet, NOT Voice HAT).
 
-The button led turns on when Mycroft is listening. If button is pressed he begins to listen. If the button is pressed for a longer time he stops whatever he is doing.
+The colour and intensity of the LED in the button can be set for when Mycroft is idle (waiting for the wake-up phrase) and when it is listening (waiting for a command). If button is pressed, Mycroft begins to listen. If the button is pressed for a longer time, it stops whatever it is doing.
 
 ## Important
-This skill is made for Picroft Lightning which is Picroft on Rasbian Stretch and should install and initialize "out of the box", assuming that the Voice Bonnet is already working for voice input and speaker output.
+This skill is made for Picroft Lightning which is Picroft on Rasbian Stretch. It assumes that the Voice Bonnet is already working installed.
 
-The following commands may need to be run to ensure that the aiy modules can be found:
+The following commands may need to be run to ensure that the Python aiy modules can be found:
 * git clone https://github.com/google/aiyprojects-raspbian.git AIY-projects-python
 * sudo pip3 install -e AIY-projects-python/src
 * echo "/home/pi/AIY-projects-python/src" > ~/mycroft-core/.venv/lib/python3.7/site-packages/aiy.pth
@@ -18,8 +18,7 @@ The following commands may need to be run to ensure that the aiy modules can be 
 **IoT**
 
 ## Credits
-Andreas Lorensen (@andlo) for the original version (for the Voice HAT).
-Simon Waller for the modified version (for the Voice Bonnet).
+Simon Waller (but based on the work by Andreas Lorensen (@andlo) for the original version for the Voice HAT).
 
 ## Supported Devices
 platform_picroft

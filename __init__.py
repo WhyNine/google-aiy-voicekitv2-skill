@@ -95,7 +95,6 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
         self.ledlistenintensity = self.settings.get('ledlistenintensity', 100)
         if self.ledlistenintensity < 0: self.ledlistenintensity = 0 
         if self.ledlistenintensity > 100: self.ledlistenintensity = 100 
-        self.log.warning('Settings: {} @ {}%, {} @ {}%'.format(self.ledidlecolour, self.ledidleintensity, self.ledlistencolour, self.ledlistenintensity))
 
 
 def create_skill():
