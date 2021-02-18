@@ -13,7 +13,7 @@ skillMetadata:
           options: RED|0;GREEN|1;YELLOW|2;BLUE|3;PURPLE|4;CYAN|5;WHITE|6;OFF|7
           value: 1
         - name: ledlistencolour
-          type: text
+          type: select
           label: LED colour while listening for command
           options: RED|0;GREEN|1;YELLOW|2;BLUE|3;PURPLE|4;CYAN|5;WHITE|6;OFF|7
           value: 0
