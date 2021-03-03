@@ -67,6 +67,7 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
             self.add_event('recognizer_loop:record_begin', self.on_listener_started)
             self.add_event('recognizer_loop:record_end', self.on_listener_ended)
             self.add_event('mycroft.skill.handler.complete', self.on_handler_complete)
+            self.add_event('mycroft.speech.recognition.unknown', self.on_handler_complete)
 
     def button_press(self, message):
         longpress_threshold = 2
