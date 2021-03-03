@@ -4,7 +4,7 @@ Enables Google AIY voicekit v2 (with Voice Bonnet)
 ## About
 This enables the LED and button on the Google AIY voicekit v2 (with Voice Bonnet, NOT Voice HAT).
 
-The colour and intensity of the LED in the button can be set for when Mycroft is idle (waiting for the wake-up phrase) and when it is listening (waiting for a command). If the button is pressed, Mycroft begins to listen. If the button is pressed for a longer time, it stops whatever it is doing.
+The colour and intensity of the LED in the button can be set for when Mycroft is idle (waiting for the wake-up phrase), when it is listening (waiting for a command) and when it is thinking (working out which skill can handle the command). If the button is pressed, Mycroft begins to listen. If the button is pressed for a longer time, it stops whatever it is doing.
 
 ## Important
 This skill is made for Picroft Lightning, which is Picroft on Rasbian Stretch. It assumes that the Voice Bonnet is already installed.
