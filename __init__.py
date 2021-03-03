@@ -37,6 +37,10 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
         self.log.info("Change LED to LISTEN colour")
         self.leds.update(Leds.rgb_on(Color.blend(colours[self.ledlistencolour], Color.BLACK, self.ledlistenintensity/100)))
 
+    def led_think(self):
+        self.log.info("Change LED to THINK colour")
+        self.leds.update(Leds.rgb_on(Color.blend(colours[self.ledthinkcolour], Color.BLACK, self.ledthinkintensity/100)))
+
     def __init__(self):
         MycroftSkill.__init__(self)
 
@@ -62,6 +66,7 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
             self.schedule_repeating_event(self.button_press, None, 0.1, 'GoogleAIYv2')
             self.add_event('recognizer_loop:record_begin', self.on_listener_started)
             self.add_event('recognizer_loop:record_end', self.on_listener_ended)
+            self.add_event('mycroft.skill.handler.complete', self.on_handler_complete)
 
     def button_press(self, message):
         longpress_threshold = 2
@@ -80,6 +85,9 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
         self.led_listen()
 
     def on_listener_ended(self, message):
+        self.led_think()
+
+    def on_handler_complete(self, message):
         self.led_idle()
 
     def on_settings_changed(self):
@@ -94,7 +102,9 @@ class PicroftGoogleAiyVoicekitv2(MycroftSkill):
         self.ledlistencolour = int(self.settings.get('ledlistencolour', 2))
         self.ledlistenintensity = self.settings.get('ledlistenintensity', 100)
         if self.ledlistenintensity < 0: self.ledlistenintensity = 0 
-        if self.ledlistenintensity > 100: self.ledlistenintensity = 100 
+        if self.ledlistenintensity > 100: self.ledlistenintensity = 100
+        self.ledthinkcolour = 0
+        self.ledthinkintensity = 100
 
 
 def create_skill():
