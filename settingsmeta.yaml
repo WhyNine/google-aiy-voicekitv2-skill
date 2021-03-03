@@ -4,7 +4,7 @@ skillMetadata:
     - name: Google AIY Voice Bonnet
       fields:
         - type: label
-          label: Enter the colours and brightness for the LED. 
+          label: Enter the colours and brightnesses of the LED. 
     - name: LED colour/brightness when idle
       fields:
         - name: ledidlecolour
@@ -31,7 +31,7 @@ skillMetadata:
       fields:
         - name: ledthinkcolour
           type: select
-          label: LED colour while listening for command
+          label: LED colour while thinking about command
           options: RED|0;GREEN|1;YELLOW|2;BLUE|3;PURPLE|4;CYAN|5;WHITE|6;OFF|7
           value: 2
         - name: ledthinkintensity
